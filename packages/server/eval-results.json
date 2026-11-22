@@ -1,0 +1,35 @@
+{
+  "note": "Synthetic data, fixed seeds. \"sophisticated\" is an attacker whose reports look human on every signal we check; it is expected to get through.",
+  "fakeCampaigns": {
+    "attack": {
+      "runs": 5,
+      "caught": 5
+    },
+    "simfarm": {
+      "runs": 5,
+      "caught": 5
+    },
+    "photo": {
+      "runs": 5,
+      "caught": 5
+    },
+    "sophisticated": {
+      "runs": 5,
+      "caught": 0
+    }
+  },
+  "detectionRateExcludingSophisticated": 1,
+  "genuineOutages": {
+    "runs": 10,
+    "falselyFlagged": 0,
+    "falsePositiveRate": 0,
+    "flaggedAtAll": 10,
+    "medianMinutesFromFirstReportToFlag": 5
+  },
+  "travellingCrowd": {
+    "runs": 5,
+    "caughtWithoutGraph": 0,
+    "caughtWithGraph": 5,
+    "note": "Same accounts, every signal human, second fake outage 3 km from the first. The graph links them by co-reporting."
+  }
+}

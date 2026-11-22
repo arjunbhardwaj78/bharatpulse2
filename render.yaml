@@ -1,0 +1,26 @@
+# Render blueprint for the API. The web app goes on Vercel (see packages/web/vercel.json).
+services:
+  - type: web
+    name: bharatpulse-api
+    runtime: node
+    buildCommand: npm install && npm run build -w @bharatpulse/engine && npm run build -w @bharatpulse/server
+    startCommand: node packages/server/dist/server.js
+    healthCheckPath: /health
+    envVars:
+      - { key: NODE_VERSION, value: "22" }
+      - { key: NODE_ENV, value: production }
+      - { key: ADMIN_KEY, generateValue: true }
+      - { key: ID_SALT, generateValue: true }
+      # No OTP_CODE: each sign-in gets a random code, shown in the app as a "demo SMS" (no SMS provider connected yet).
+      # Detection is re-run at most every 10 s on reads (writes always re-run it).
+      - { key: RECOMPUTE_TTL_MS, value: "10000" }
+      # Set to your Vercel URL (comma-separate several). '*' works but ArgosX will flag it.
+      - { key: CORS_ORIGIN, value: "*" }
+      # Demo choice: judges on laptops often block location, so the 1 km phone-location check is off. Set to true for phone demos.
+      - { key: GEOFENCE, value: "false" }
+      # Generated on first deploy; read it in the Render dashboard (Environment) and share it only with people who need officer access.
+      - { key: OFFICER_PASSWORD, generateValue: true }
+      - { key: NEO4J_URI, sync: false }
+      - { key: NEO4J_USER, sync: false }
+      - { key: NEO4J_PASSWORD, sync: false }
+      - { key: SARVAM_API_KEY, sync: false }

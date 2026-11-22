@@ -1,0 +1,24 @@
+{
+  "name": "bharatpulse",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BharatPulse: civic early-warning for water-supply failures. Complaints become incidents.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @bharatpulse/engine && npm run build -w @bharatpulse/server",
+    "typecheck": "npm run build -w @bharatpulse/engine && npm run typecheck --workspaces --if-present",
+    "test": "npm run build -w @bharatpulse/engine && npm test --workspaces --if-present",
+    "dev:server": "npm run build -w @bharatpulse/engine && npm run dev -w @bharatpulse/server",
+    "eval": "npm run build -w @bharatpulse/engine && npm run eval -w @bharatpulse/server",
+    "neo4j:smoke": "npm run build -w @bharatpulse/engine && npm run neo4j:smoke -w @bharatpulse/server",
+    "sarvam:smoke": "npm run build -w @bharatpulse/engine && npm run sarvam:smoke -w @bharatpulse/server",
+    "dev:web": "npm run dev -w @bharatpulse/web",
+    "smoke:web": "npm run smoke -w @bharatpulse/web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
