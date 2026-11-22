@@ -3,7 +3,7 @@ services:
   - type: web
     name: bharatpulse-api
     runtime: node
-    buildCommand: npm install && npm run build -w @bharatpulse/engine && npm run build -w @bharatpulse/server
+        buildCommand: npm install --include=dev && npm run build -w @bharatpulse/engine && npm run build -w @bharatpulse/server
     startCommand: node packages/server/dist/server.js
     healthCheckPath: /health
     envVars:
